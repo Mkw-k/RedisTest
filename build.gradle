@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.5'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Redis Test Support
+    testImplementation 'it.ozimov:embedded-redis:0.7.2'
+
+    // h2
+    testImplementation 'com.h2database:h2'
+
+    //jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    //QueryDSL
+    implementation 'com.querydsl:querydsl-jpa:4.4.0' // 버전 변경
+    implementation 'com.querydsl:querydsl-apt'
+    annotationProcessor 'com.querydsl:querydsl-apt:4.4.0:jpa'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
